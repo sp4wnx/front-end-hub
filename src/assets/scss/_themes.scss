@@ -1,0 +1,49 @@
+@import 'variables';
+
+//theme1
+#mcb-theme {
+    // background-color: white;
+
+  .btn-primary {
+    background-color: #e40713;
+    color: #ffffff;
+  }
+
+  #nav-desktop {
+    background-color: #e40713;
+  }
+
+  #nav-leftside {
+    background-color: #343a40;
+    color: #ffffff;
+
+    .nav-link:hover {
+      background-color: white;
+      color: darkolivegreen;
+    }
+  }
+}
+
+#green-theme {
+    // background-color: white;
+
+  .btn-primary {
+    background-color: darkolivegreen;
+    color: #ffffff;
+  }
+
+  #nav-desktop {
+    background-color: green;
+  }
+
+  #nav-leftside {
+    background-color: darkolivegreen;
+    color: #ffffff;
+
+    .nav-link:hover {
+      background-color: white;
+      color: darkolivegreen;
+    }
+  }
+}
+

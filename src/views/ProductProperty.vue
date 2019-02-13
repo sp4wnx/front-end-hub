@@ -1,0 +1,737 @@
+<template>
+<div class="row text-left">
+    
+<!-- sidebar search property -->
+  <div id="sidebar" class="col-sm-3 col-md-3">
+    <!-- <div class="block">
+      <div class="header-tab">
+        <h3>Search by Location</h3>
+      </div>
+      <div class="content">
+
+        <form @click.prevent="onSubmit" id="region-search" class="form-inline">
+          <input type="hidden" name="index" value="locations">
+          <div class="row">
+            <div class="col-xs-9 col-sm-12 col-lg-8">
+              <input type="text" class="form-control search-query" id="search-query" placeholder="E.g. country, area, county, state, province, city, town, region or postcode." autocomplete="off" value="">
+            </div>
+            <div class="col-xs-3 col-sm-12 col-lg-4">
+              <input type="submit" value="GO" class="btn btn-success btn-block form-control">
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div> -->
+    <!-- end: .block -->
+    <div class="block">
+      <div class="header-tab">
+        <h3>Refine</h3>
+      </div>
+      <div class="content">
+        <form @submit.prevent="onSubmitSearch" id="search-form">
+          <div class="form-group">
+            <label for="input-category">For Sale / For Rent</label>
+            <select name="category" id="input-category" class="form-control">
+            <option value="">Both</option>
+            <option value="sale">For Sale</option>
+            <option value="rent">For Rent</option>
+        </select>
+          </div>
+          <div class="form-group">
+            <label for="refine-countries">Country</label>
+            <select name="country" id="refine-countries" class="form-control">
+            <option value="">Please Select</option>
+            <option value="AG" data-slug="antigua-and-barbuda">Antigua and Barbuda</option><option value="AU" data-slug="australia">Australia</option><option value="AT" data-slug="austria">Austria</option><option value="BS" data-slug="bahamas">Bahamas</option><option value="BB" data-slug="barbados">Barbados</option><option value="BZ" data-slug="belize">Belize</option><option value="BR" data-slug="brazil">Brazil</option><option value="VG" data-slug="british-virgin-islands">British Virgin Islands</option><option value="BG" data-slug="bulgaria">Bulgaria</option><option value="CV" data-slug="cape-verde">Cape Verde</option><option value="KY" data-slug="cayman-islands">Cayman Islands</option><option value="HR" data-slug="croatia">Croatia</option><option value="CY" data-slug="cyprus">Cyprus</option><option value="CZ" data-slug="czech-republic">Czech Republic</option><option value="DO" data-slug="dominican-republic">Dominican Rep.</option><option value="EG" data-slug="egypt">Egypt</option><option value="FR" data-slug="france">France</option><option value="DE" data-slug="germany">Germany</option><option value="GH" data-slug="ghana">Ghana</option><option value="GI" data-slug="gibraltar">Gibraltar</option><option value="GR" data-slug="greece">Greece</option><option value="HU" data-slug="hungary">Hungary</option><option value="IL" data-slug="israel">Israel</option><option value="IT" data-slug="italy">Italy</option><option value="JM" data-slug="jamaica">Jamaica</option><option value="LV" data-slug="latvia">Latvia</option><option value="MO" data-slug="macau">Macau</option><option value="MT" data-slug="malta">Malta</option><option value="MU" data-slug="mauritius">Mauritius</option><option value="MX" data-slug="mexico">Mexico</option><option value="ME" data-slug="montenegro">Montenegro</option><option value="NZ" data-slug="new-zealand">New Zealand</option><option value="NY" data-slug="northern-cyprus">Northern Cyprus</option><option value="PA" data-slug="panama">Panama</option><option value="PH" data-slug="philippines">Philippines</option><option value="PL" data-slug="poland">Poland</option><option value="PT" data-slug="portugal">Portugal</option><option value="ZA" data-slug="south-africa">South Africa</option><option value="ES" data-slug="spain">Spain</option><option value="LC" data-slug="saint-lucia">St Lucia</option><option value="VC" data-slug="saint-vincent-and-the-grenadines">St. Vincent and the Grenadines</option><option value="CH" data-slug="switzerland">Switzerland</option><option value="TH" data-slug="thailand">Thailand</option><option value="TT" data-slug="trinidad-and-tobago">Trinidad and Tobago</option><option value="TN" data-slug="tunisia">Tunisia</option><option value="TR" data-slug="turkey">Turkey</option><option value="AE" data-slug="united-arab-emirates">United Arab Emirates</option><option value="GB" data-slug="united-kingdom">United Kindom</option><option value="US" data-slug="united-states-of-america">United States</option><optgroup label="Coming soon …"><option value="AF" data-slug="afghanistan" disabled="disabled">Afghanistan</option><option value="AL" data-slug="albania" disabled="disabled">Albania</option><option value="DZ" data-slug="algeria" disabled="disabled">Algeria</option><option value="AD" data-slug="andorra" disabled="disabled">Andorra</option><option value="AO" data-slug="angola" disabled="disabled">Angola</option><option value="AI" data-slug="anguilla" disabled="disabled">Anguilla</option><option value="AR" data-slug="argentina" disabled="disabled">Argentina</option><option value="AM" data-slug="armenia" disabled="disabled">Armenia</option><option value="AZ" data-slug="azerbaijan" disabled="disabled">Azerbaijan</option><option value="BH" data-slug="bahrain" disabled="disabled">Bahrain</option><option value="BD" data-slug="bangladesh" disabled="disabled">Bangladesh</option><option value="BY" data-slug="belarus" disabled="disabled">Belarus</option><option value="BE" data-slug="belgium" disabled="disabled">Belgium</option><option value="BT" data-slug="bhutan" disabled="disabled">Bhutan</option><option value="BO" data-slug="bolivia" disabled="disabled">Bolivia</option><option value="BA" data-slug="bosnia-and-herzegovina" disabled="disabled">Bosnia and Herzegovina</option><option value="BW" data-slug="botswana" disabled="disabled">Botswana</option><option value="BN" data-slug="brunei-darussalam" disabled="disabled">Brunei</option><option value="BI" data-slug="burundi" disabled="disabled">Burundi</option><option value="KH" data-slug="cambodia" disabled="disabled">Cambodia</option><option value="CM" data-slug="cameroon" disabled="disabled">Cameroon</option><option value="CA" data-slug="canada" disabled="disabled">Canada</option><option value="TD" data-slug="chad" disabled="disabled">Chad</option><option value="CL" data-slug="chile" disabled="disabled">Chile</option><option value="CN" data-slug="china" disabled="disabled">China</option><option value="CO" data-slug="colombia" disabled="disabled">Colombia</option><option value="KM" data-slug="comoros" disabled="disabled">Comoros</option><option value="CG" data-slug="republic-of-congo" disabled="disabled">Congo</option><option value="CR" data-slug="costa-rica" disabled="disabled">Costa Rica</option><option value="CI" data-slug="cote-d-ivoire" disabled="disabled">Cote d'Ivoire</option><option value="CU" data-slug="cuba" disabled="disabled">Cuba</option><option value="CD" data-slug="democratic-republic-of-the-congo" disabled="disabled">Dem. Rep. Congo</option><option value="DK" data-slug="denmark" disabled="disabled">Denmark</option><option value="DJ" data-slug="djibouti" disabled="disabled">Djibouti</option><option value="DM" data-slug="dominica" disabled="disabled">Dominica</option><option value="EC" data-slug="ecuador" disabled="disabled">Ecuador</option><option value="SV" data-slug="el-salvador" disabled="disabled">El Salvador</option><option value="GQ" data-slug="equatorial-guinea" disabled="disabled">Eq. Guinea</option><option value="ER" data-slug="eritrea" disabled="disabled">Eritrea</option><option value="EE" data-slug="estonia" disabled="disabled">Estonia</option><option value="ET" data-slug="ethiopia" disabled="disabled">Ethiopia</option><option value="FJ" data-slug="fiji" disabled="disabled">Fiji</option><option value="FI" data-slug="finland" disabled="disabled">Finland</option><option value="GF" data-slug="french-guiana" disabled="disabled">French Guiana</option><option value="GA" data-slug="gabon" disabled="disabled">Gabon</option><option value="GM" data-slug="the-gambia" disabled="disabled">Gambia</option><option value="GE" data-slug="georgia" disabled="disabled">Georgia</option><option value="GD" data-slug="grenada" disabled="disabled">Grenada</option><option value="GT" data-slug="guatemala" disabled="disabled">Guatemala</option><option value="GN" data-slug="guinea" disabled="disabled">Guinea</option><option value="GW" data-slug="guinea-bissau" disabled="disabled">Guinea-Bissau</option><option value="GY" data-slug="guyana" disabled="disabled">Guyana</option><option value="HT" data-slug="haiti" disabled="disabled">Haiti</option><option value="HN" data-slug="honduras" disabled="disabled">Honduras</option><option value="HK" data-slug="hong-kong" disabled="disabled">Hong Kong</option><option value="IS" data-slug="iceland" disabled="disabled">Iceland</option><option value="IN" data-slug="india" disabled="disabled">India</option><option value="ID" data-slug="indonesia" disabled="disabled">Indonesia</option><option value="IR" data-slug="iran" disabled="disabled">Iran</option><option value="IQ" data-slug="iraq" disabled="disabled">Iraq</option><option value="IE" data-slug="ireland" disabled="disabled">Ireland</option><option value="JP" data-slug="japan" disabled="disabled">Japan</option><option value="JO" data-slug="jordan" disabled="disabled">Jordan</option><option value="KZ" data-slug="kazakhstan" disabled="disabled">Kazakhstan</option><option value="KE" data-slug="kenya" disabled="disabled">Kenya</option><option value="KI" data-slug="kiribati" disabled="disabled">Kiribati</option><option value="KP" data-slug="dem-rep-korea" disabled="disabled">Korea North</option><option value="KR" data-slug="republic-of-korea" disabled="disabled">Korea South</option><option value="KW" data-slug="kuwait" disabled="disabled">Kuwait</option><option value="KG" data-slug="kyrgyzstan" disabled="disabled">Kyrgyzstan</option><option value="LB" data-slug="lebanon" disabled="disabled">Lebanon</option><option value="LS" data-slug="lesotho" disabled="disabled">Lesotho</option><option value="LR" data-slug="liberia" disabled="disabled">Liberia</option><option value="LY" data-slug="libya" disabled="disabled">Libya</option><option value="LI" data-slug="liechtenstein" disabled="disabled">Liechtenstein</option><option value="LT" data-slug="lithuania" disabled="disabled">Lithuania</option><option value="LA" data-slug="laos" disabled="disabled">Loas</option><option value="LU" data-slug="luxembourg" disabled="disabled">Luxembourg</option><option value="MK" data-slug="macedonia" disabled="disabled">Macedonia</option><option value="MG" data-slug="madagascar" disabled="disabled">Madagascar</option><option value="MW" data-slug="malawi" disabled="disabled">Malawi</option><option value="MY" data-slug="malaysia" disabled="disabled">Malaysia</option><option value="MV" data-slug="maldives" disabled="disabled">Maldives</option><option value="ML" data-slug="mali" disabled="disabled">Mali</option><option value="MH" data-slug="marshall-islands" disabled="disabled">Marshall Is.</option><option value="MR" data-slug="mauritania" disabled="disabled">Mauritania</option><option value="FM" data-slug="federated-states-of-micronesia" disabled="disabled">Micronesia</option><option value="MD" data-slug="moldova" disabled="disabled">Moldova</option><option value="MC" data-slug="monaco" disabled="disabled">Monaco</option><option value="MN" data-slug="mongolia" disabled="disabled">Mongolia</option><option value="MA" data-slug="morocco" disabled="disabled">Morocco</option><option value="MZ" data-slug="mozambique" disabled="disabled">Mozambique</option><option value="MM" data-slug="myanmar" disabled="disabled">Myanmar</option><option value="NA" data-slug="namibia" disabled="disabled">Namibia</option><option value="NR" data-slug="nauru" disabled="disabled">Nauru</option><option value="NP" data-slug="nepal" disabled="disabled">Nepal</option><option value="NL" data-slug="netherlands" disabled="disabled">Netherlands</option><option value="NI" data-slug="nicaragua" disabled="disabled">Nicaragua</option><option value="NE" data-slug="niger" disabled="disabled">Niger</option><option value="NG" data-slug="nigeria" disabled="disabled">Nigeria</option><option value="NO" data-slug="norway" disabled="disabled">Norway</option><option value="OM" data-slug="oman" disabled="disabled">Oman</option><option value="PK" data-slug="pakistan" disabled="disabled">Pakistan</option><option value="PW" data-slug="palau" disabled="disabled">Palau</option><option value="PS" data-slug="palestine" disabled="disabled">Palestine</option><option value="PG" data-slug="papua-new-guinea" disabled="disabled">Papua New Guinea</option><option value="PY" data-slug="paraguay" disabled="disabled">Paraguay</option><option value="PE" data-slug="peru" disabled="disabled">Peru</option><option value="QA" data-slug="qatar" disabled="disabled">Qatar</option><option value="RO" data-slug="romania" disabled="disabled">Romania</option><option value="RU" data-slug="russian-federation" disabled="disabled">Russia</option><option value="RW" data-slug="rwanda" disabled="disabled">Rwanda</option><option value="MF" data-slug="saint-martin" disabled="disabled">Saint Martin</option><option value="WS" data-slug="samoa" disabled="disabled">Samoa</option><option value="SM" data-slug="san-marino" disabled="disabled">San Marino</option><option value="ST" data-slug="sao-tome-and-principe" disabled="disabled">Sao Tome and Principe</option><option value="SA" data-slug="saudi-arabia" disabled="disabled">Saudi Arabia</option><option value="SN" data-slug="senegal" disabled="disabled">Senegal</option><option value="RS" data-slug="serbia" disabled="disabled">Serbia</option><option value="SC" data-slug="seychelles" disabled="disabled">Seychelles</option><option value="SL" data-slug="sierra-leone" disabled="disabled">Sierra Leone</option><option value="SG" data-slug="singapore" disabled="disabled">Singapore</option><option value="SX" data-slug="sint-maarten" disabled="disabled">Sint Maarten</option><option value="SK" data-slug="slovakia" disabled="disabled">Slovakia</option><option value="SI" data-slug="slovenia" disabled="disabled">Slovenia</option><option value="SB" data-slug="solomon-islands" disabled="disabled">Solomon Is.</option><option value="SO" data-slug="somalia" disabled="disabled">Somalia</option><option value="SS" data-slug="south-sudan" disabled="disabled">South Sudan</option><option value="LK" data-slug="sri-lanka" disabled="disabled">Sri Lanka</option><option value="KN" data-slug="saint-kitts-and-nevis" disabled="disabled">St. Kitts and Nevis</option><option value="SD" data-slug="sudan" disabled="disabled">Sudan</option><option value="SR" data-slug="suriname" disabled="disabled">Suriname</option><option value="SZ" data-slug="swaziland" disabled="disabled">Swaziland</option><option value="SE" data-slug="sweden" disabled="disabled">Sweden</option><option value="SY" data-slug="syria" disabled="disabled">Syria</option><option value="TW" data-slug="taiwan" disabled="disabled">Taiwan</option><option value="TJ" data-slug="tajikistan" disabled="disabled">Tajikistan</option><option value="TZ" data-slug="tanzania" disabled="disabled">Tanzania</option><option value="TG" data-slug="togo" disabled="disabled">Togo</option><option value="TO" data-slug="tonga" disabled="disabled">Tonga</option><option value="TM" data-slug="turkmenistan" disabled="disabled">Turkmenistan</option><option value="TV" data-slug="tuvalu" disabled="disabled">Tuvalu</option><option value="UG" data-slug="uganda" disabled="disabled">Uganda</option><option value="UA" data-slug="ukraine" disabled="disabled">Ukraine</option><option value="UY" data-slug="uruguay" disabled="disabled">Uruguay</option><option value="UZ" data-slug="uzbekistan" disabled="disabled">Uzbekistan</option><option value="VU" data-slug="vanuatu" disabled="disabled">Vanuatu</option><option value="VA" data-slug="vatican-city" disabled="disabled">Vatican City</option><option value="VE" data-slug="venezuela" disabled="disabled">Venezuela</option><option value="VN" data-slug="vietnam" disabled="disabled">Vietnam</option><option value="YE" data-slug="yemen" disabled="disabled">Yemen</option><option value="ZM" data-slug="zambia" disabled="disabled">Zambia</option><option value="ZW" data-slug="zimbabwe" disabled="disabled">Zimbabwe</option></optgroup>        </select>
+          </div>
+          <div id="search-divisions" class="control-block form-group">
+            <label for="refine-divisions">Region</label>
+            <select name="division" id="refine-divisions" class="form-control">
+            <option value="">Please Select</option>
+        <option class="country-divisions" value="aquitaine">Aquitaine</option><option class="country-divisions" value="auvergne">Auvergne</option><option class="country-divisions" value="auvergne-rhone-alpes">Auvergne-Rhône-Alpes</option><option class="country-divisions" value="bourgogne-franche-comte">Bourgogne-Franche-Comté</option><option class="country-divisions" value="brittany">Brittany</option><option class="country-divisions" value="burgundy">Burgundy</option><option class="country-divisions" value="centre">Centre</option><option class="country-divisions" value="centre-loire-valley">Centre-Loire Valley</option><option class="country-divisions" value="centre-val-de-loire">Centre-Val de Loire</option><option class="country-divisions" value="ile-de-france">Ile-de-France</option><option class="country-divisions" value="languedoc-roussillon">Languedoc-Roussillon</option><option class="country-divisions" value="limousin">Limousin</option><option class="country-divisions" value="lorraine">Lorraine</option><option class="country-divisions" value="lower-normandy">Lower Normandy</option><option class="country-divisions" value="maritime-alps">Maritime Alps</option><option class="country-divisions" value="metropolitan-france">Metropolitan France</option><option class="country-divisions" value="midi-pyrenees">Midi-Pyrénées</option><option class="country-divisions" value="new-aquitaine">New Aquitaine</option><option class="country-divisions" value="nord-pas-de-calais-and-picardy">Nord-Pas-de-Calais and Picardy</option><option class="country-divisions" value="normandy">Normandy</option><option class="country-divisions" value="nouvelle-aquitaine">Nouvelle-Aquitaine</option><option class="country-divisions" value="occitania">Occitania</option><option class="country-divisions" value="pays-de-la-loire">Pays de la Loire</option><option class="country-divisions" value="pays-de-la-loire">Pays-de-la-Loire</option><option class="country-divisions" value="poitou-charentes">Poitou-Charentes</option><option class="country-divisions" value="provence-alpes-cote-d-azur">Provence-Alpes-Côte d'Azur</option><option class="country-divisions" value="provence-alpes-cote-d-azur">Provence-Alpes-Côte-d'Azur</option><option class="country-divisions" value="rhone-alpes">Rhône-Alpes</option><option class="country-divisions" value="saint-martin">Saint Martin</option></select>
+          </div>
+
+          <div id="search-districts" class="control-block hide form-group">
+            <label for="refine-districts">Town/City</label>
+            <select name="district" id="refine-districts" class="form-control">
+            <option value="">Please Select</option>
+        </select>
+          </div>
+
+          <div id="search-localities" class="control-block hide form-group">
+            <label for="refine-localities">Suburb</label>
+            <select name="locality" id="refine-localities" class="form-control">
+            <option value="">Please Select</option>
+        </select>
+          </div>
+
+          <div class="form-group">
+            <label for="input-keyword">Keyword</label>
+            <input class="form-control" type="text" name="keyword" id="input-keyword" placeholder="Tennis, Outdoor Pool " value="">
+          </div>
+          <div class="form-group">
+            <label for="input-radius">Radius</label>
+            <select name="radius" id="input-radius" class="form-control">
+            <option value="">This Area Only</option>
+            <option value="0.25">Within ¼ Mile</option><option value="0.5">Within ½ Mile</option><option value="1.0">Within 1 Mile</option><option value="3.0">Within 3 Miles</option><option value="5.0">Within 5 Miles</option><option value="10.0">Within 10 Miles</option><option value="15.0">Within 15 Miles</option><option value="20.0">Within 20 Miles</option><option value="30.0">Within 30 Miles</option><option value="40.0">Within 40 Miles</option>        </select>
+          </div>
+
+          <div class="form-group">
+            <label for="refine-type">Property Type</label>
+            <select name="type" id="refine-type" class="form-control">
+            <option value="">Please Select</option>
+            <option value="houses">Houses / Villas</option><option value="apartments">Flats / Apartments</option><option value="bungalows">Bungalows</option><option value="holiday">Holiday Rentals</option><option value="land">Land</option><option value="commercial">Commercial Property</option><option value="developments">New Build &amp; Developments</option><option value="investment">Investment (SIPPS)</option><option value="retirement">Retirement</option>        </select>
+          </div>
+
+          <div id="refine-classification-list" class="control-block hide form-group" style="display: none;">
+            <select name="classification" id="refine-classification-houses" data-type="houses" class="span12 hide refine-classification" disabled="disabled"><option value="">Any (Shows All Types)</option><option value="24">Chalet</option><option value="6">Cluster House</option><option value="23">Cottage</option><option value="4">Detached</option><option value="131">Detached Villa</option><option value="2">End of Terrace</option><option value="30">Finca</option><option value="512">House of Multiple Occupation</option><option value="21">Link Detached House</option><option value="5">Mews</option><option value="3">Semi-Detached</option><option value="128">Semi-Detached Villa</option><option value="1">Terraced</option><option value="22">Town House</option><option value="27">Villa</option><option value="95">Village House</option></select>
+            <select
+              name="classification" id="refine-classification-apartments" data-type="apartments" class="span12 hide refine-classification" disabled="disabled">
+              <option value="">Any (Shows All Types)</option>
+              <option value="28">Apartment</option>
+              <option value="143">Block of Apartments</option>
+              <option value="511">Coach House</option>
+              <option value="56">Duplex</option>
+              <option value="8">Flat</option>
+              <option value="7">Ground Flat</option>
+              <option value="10">Ground Maisonette</option>
+              <option value="142">Hotel Room</option>
+              <option value="11">Maisonette</option>
+              <option value="29">Penthouse</option>
+              <option value="144">Private Halls</option>
+              <option value="44">Serviced Apartments</option>
+              <option value="9">Studio</option>
+              <option value="59">Triplex</option>
+              </select><select name="classification" id="refine-classification-bungalows" data-type="bungalows" class="span12 hide refine-classification" disabled="disabled"><option value="">Any (Shows All Types)</option><option value="12">Bungalow</option><option value="15">Detached Bungalow</option><option value="14">Semi-Detached Bungalow</option><option value="13">Terraced Bungalow</option></select>
+              <select
+                name="classification" id="refine-classification-land" data-type="land" class="span12 hide refine-classification" disabled="disabled">
+                <option value="">Any (Shows All Types)</option>
+                <option value="107">Farm Land</option>
+                <option value="20">Land</option>
+                <option value="125">Off-Plan</option>
+                <option value="110">Plot</option>
+                <option value="304">Smallholding</option>
+                </select><select name="classification" id="refine-classification-commercial" data-type="commercial" class="span12 hide refine-classification" disabled="disabled"><option value="">Any (Shows All Types)</option><option value="134">Bar</option><option value="181">Business Park</option><option value="83">Cafe</option><option value="301">Childcare Facility</option><option value="244">Commercial Development</option><option value="253">Commercial Property</option><option value="193">Convenience Store</option><option value="256">Data Centre</option><option value="217">Distribution Warehouse</option><option value="220">Factory</option><option value="259">Farm</option><option value="196">Garage</option><option value="277">Guest House</option><option value="199">Hairdresser / Barber Shop</option><option value="262">Healthcare Facility</option><option value="223">Heavy Industrial</option><option value="280">Hospitality</option><option value="202">Hotel</option><option value="247">Industrial Development</option><option value="226">Industrial Park</option><option value="241">Land</option><option value="283">Leisure Facility</option><option value="229">Light Industrial</option><option value="265">Marine Property</option><option value="86">Mill</option><option value="268">Mixed Use</option><option value="178">Office</option><option value="205">Petrol Station</option><option value="307">Place of Worship</option><option value="208">Post Office</option><option value="211">Pub</option><option value="271">Research &amp;and; Development Facility</option><option value="250">Residential Development</option><option value="80">Restaurant</option><option value="187">Retail Property (High Street)</option><option value="190">Retail Property (Out of Town)</option><option value="274">Science Park</option><option value="184">Serviced Office</option><option value="137">Shop</option><option value="235">Showroom</option><option value="232">Storage</option><option value="298">Takeaway</option><option value="310">Trade Counter</option><option value="89">Trulli</option><option value="238">Warehouse</option><option value="214">Workshop</option></select>
+                <select
+                  name="classification" id="refine-classification-retirement" data-type="retirement" class="span12 hide refine-classification" disabled="disabled">
+                  <option value="">Any (Shows All Types)</option>
+                  <option value="147">Retirement Property</option>
+                  <option value="146">Sheltered Housing</option>
+                  </select>
+          </div>
+
+          <div class="form-group">
+            <label>Min Price (GBP)</label>
+            <select name="price_min" class="sales form-control">
+            <option value="">No Min</option>
+            <option value="25000">25,000</option><option value="50000">50,000</option><option value="60000">60,000</option><option value="70000">70,000</option><option value="75000">75,000</option><option value="80000">80,000</option><option value="90000">90,000</option><option value="100000">100,000</option><option value="110000">110,000</option><option value="120000">120,000</option><option value="125000">125,000</option><option value="130000">130,000</option><option value="140000">140,000</option><option value="150000">150,000</option><option value="160000">160,000</option><option value="170000">170,000</option><option value="175000">175,000</option><option value="180000">180,000</option><option value="190000">190,000</option><option value="200000">200,000</option><option value="210000">210,000</option><option value="220000">220,000</option><option value="230000">230,000</option><option value="240000">240,000</option><option value="250000">250,000</option><option value="260000">260,000</option><option value="270000">270,000</option><option value="280000">280,000</option><option value="290000">290,000</option><option value="300000">300,000</option><option value="325000">325,000</option><option value="350000">350,000</option><option value="375000">375,000</option><option value="400000">400,000</option><option value="425000">425,000</option><option value="450000">450,000</option><option value="475000">475,000</option><option value="500000">500,000</option><option value="550000">550,000</option><option value="600000">600,000</option><option value="650000">650,000</option><option value="700000">700,000</option><option value="800000">800,000</option><option value="900000">900,000</option><option value="1000000">1,000,000</option><option value="1250000">1,250,000</option><option value="1500000">1,500,000</option><option value="1750000">1,750,000</option><option value="2000000">2,000,000</option><option value="2500000">2,500,000</option><option value="3000000">3,000,000</option><option value="4000000">4,000,000</option><option value="5000000">5,000,000</option><option value="7500000">7,500,000</option><option value="10000000">10,000,000</option><option value="15000000">15,000,000</option><option value="17500000">17,500,000</option><option value="20000000">20,000,000</option><option value="25000000">25,000,000</option><option value="35000000">35,000,000</option><option value="50000000">50,000,000</option><option value="">50,000,000+</option>        </select>
+
+            <select name="price_min" class="hide lettings form-control" disabled="disabled">
+            <option value="">No Max</option>
+            <option value="50">50 PCM</option><option value="100">100 PCM</option><option value="200">200 PCM</option><option value="300">300 PCM</option><option value="400">400 PCM</option><option value="500">500 PCM</option><option value="600">600 PCM</option><option value="700">700 PCM</option><option value="800">800 PCM</option><option value="900">900 PCM</option><option value="1000">1,000 PCM</option><option value="1250">1,250 PCM</option><option value="1500">1,500 PCM</option><option value="1750">1,750 PCM</option><option value="2000">2,000 PCM</option><option value="2250">2,250 PCM</option><option value="2500">2,500 PCM</option><option value="2750">2,750 PCM</option><option value="3000">3,000 PCM</option><option value="3250">3,250 PCM</option><option value="3500">3,500 PCM</option><option value="3750">3,750 PCM</option><option value="4000">4,000 PCM</option><option value="4500">4,500 PCM</option><option value="5000">5,000 PCM</option><option value="5500">5,500 PCM</option><option value="6000">6,000 PCM</option><option value="6500">6,500 PCM</option><option value="7000">7,000 PCM</option><option value="7500">7,500 PCM</option><option value="8000">8,000 PCM</option><option value="8500">8,500 PCM</option><option value="9000">9,000 PCM</option><option value="9500">9,500 PCM</option><option value="10000">10,000 PCM</option><option value="11000">11,000 PCM</option><option value="12000">12,000 PCM</option><option value="13000">13,000 PCM</option><option value="14000">14,000 PCM</option><option value="15000">15,000 PCM</option><option value="16000">16,000 PCM</option><option value="17000">17,000 PCM</option><option value="18000">18,000 PCM</option><option value="19000">19,000 PCM</option><option value="20000">20,000 PCM</option><option value="25000">25,000 PCM</option><option value="30000">30,000 PCM</option><option value="40000">40,000 PCM</option><option value="50000">50,000 PCM</option><option value="60000">60,000 PCM</option><option value="70000">70,000 PCM</option><option value="90000">90,000 PCM</option><option value="100000">100,000 PCM</option><option value="">No Maximum </option>        </select>
+          </div>
+
+          <div class="form-group">
+            <label>Max Price (GBP)</label>
+            <select name="price_max" class="sales form-control">
+           <option value="">No Min</option>
+           <option value="25000">25,000</option><option value="50000">50,000</option><option value="60000">60,000</option><option value="70000">70,000</option><option value="75000">75,000</option><option value="80000">80,000</option><option value="90000">90,000</option><option value="100000">100,000</option><option value="110000">110,000</option><option value="120000">120,000</option><option value="125000">125,000</option><option value="130000">130,000</option><option value="140000">140,000</option><option value="150000">150,000</option><option value="160000">160,000</option><option value="170000">170,000</option><option value="175000">175,000</option><option value="180000">180,000</option><option value="190000">190,000</option><option value="200000">200,000</option><option value="210000">210,000</option><option value="220000">220,000</option><option value="230000">230,000</option><option value="240000">240,000</option><option value="250000">250,000</option><option value="260000">260,000</option><option value="270000">270,000</option><option value="280000">280,000</option><option value="290000">290,000</option><option value="300000">300,000</option><option value="325000">325,000</option><option value="350000">350,000</option><option value="375000">375,000</option><option value="400000">400,000</option><option value="425000">425,000</option><option value="450000">450,000</option><option value="475000">475,000</option><option value="500000">500,000</option><option value="550000">550,000</option><option value="600000">600,000</option><option value="650000">650,000</option><option value="700000">700,000</option><option value="800000">800,000</option><option value="900000">900,000</option><option value="1000000">1,000,000</option><option value="1250000">1,250,000</option><option value="1500000">1,500,000</option><option value="1750000">1,750,000</option><option value="2000000">2,000,000</option><option value="2500000">2,500,000</option><option value="3000000">3,000,000</option><option value="4000000">4,000,000</option><option value="5000000">5,000,000</option><option value="7500000">7,500,000</option><option value="10000000">10,000,000</option><option value="15000000">15,000,000</option><option value="17500000">17,500,000</option><option value="20000000">20,000,000</option><option value="25000000">25,000,000</option><option value="35000000">35,000,000</option><option value="50000000">50,000,000</option><option value="">50,000,000+</option>       </select>
+
+            <select name="price_max" class="hide lettings form-control" disabled="disabled">
+           <option value="">No Max</option>
+           <option value="50">50 PCM</option><option value="100">100 PCM</option><option value="200">200 PCM</option><option value="300">300 PCM</option><option value="400">400 PCM</option><option value="500">500 PCM</option><option value="600">600 PCM</option><option value="700">700 PCM</option><option value="800">800 PCM</option><option value="900">900 PCM</option><option value="1000">1,000 PCM</option><option value="1250">1,250 PCM</option><option value="1500">1,500 PCM</option><option value="1750">1,750 PCM</option><option value="2000">2,000 PCM</option><option value="2250">2,250 PCM</option><option value="2500">2,500 PCM</option><option value="2750">2,750 PCM</option><option value="3000">3,000 PCM</option><option value="3250">3,250 PCM</option><option value="3500">3,500 PCM</option><option value="3750">3,750 PCM</option><option value="4000">4,000 PCM</option><option value="4500">4,500 PCM</option><option value="5000">5,000 PCM</option><option value="5500">5,500 PCM</option><option value="6000">6,000 PCM</option><option value="6500">6,500 PCM</option><option value="7000">7,000 PCM</option><option value="7500">7,500 PCM</option><option value="8000">8,000 PCM</option><option value="8500">8,500 PCM</option><option value="9000">9,000 PCM</option><option value="9500">9,500 PCM</option><option value="10000">10,000 PCM</option><option value="11000">11,000 PCM</option><option value="12000">12,000 PCM</option><option value="13000">13,000 PCM</option><option value="14000">14,000 PCM</option><option value="15000">15,000 PCM</option><option value="16000">16,000 PCM</option><option value="17000">17,000 PCM</option><option value="18000">18,000 PCM</option><option value="19000">19,000 PCM</option><option value="20000">20,000 PCM</option><option value="25000">25,000 PCM</option><option value="30000">30,000 PCM</option><option value="40000">40,000 PCM</option><option value="50000">50,000 PCM</option><option value="60000">60,000 PCM</option><option value="70000">70,000 PCM</option><option value="90000">90,000 PCM</option><option value="100000">100,000 PCM</option><option value="">No Maximum </option>       </select>
+          </div>
+
+          <div class="extra">
+            <div class="form-group">
+              <label for="input-bedrooms-min">Min Beds</label>
+              <select name="bedrooms_min" id="input-bedrooms-min" class="form-control">
+                <option value="">Please Select</option>
+                <option value="0">Studio / Room</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>            </select>
+            </div>
+
+            <div class="form-group">
+              <label for="input-bedrooms-max">Max Beds</label>
+              <select name="bedrooms_max" id="input-bedrooms-max" class="form-control">
+                <option value="">Please Select</option>
+                <option value="0">Studio / Room</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>            </select>
+            </div>
+
+            <div class="form-group">
+              <label for="input-floor-area-min">Min Floor Area (m<sup>2</sup>)</label>
+              <select name="floor_area_min" id="input-floor-area-min" class="form-control">
+                <option value="">Please Select</option>
+                <option value="0">N/A</option><option value="50">50 m2</option><option value="100">100 m2</option><option value="250">250 m2</option><option value="500">500 m2</option><option value="750">750 m2</option><option value="1000">1,000 m2</option><option value="1500">1,500 m2</option><option value="2000">2,000 m2</option><option value="2500">2,500 m2</option><option value="3000">3,000 m2</option><option value="3500">3,500 m2</option><option value="4000">4,000 m2</option><option value="4500">4,500 m2</option><option value="5000">5,000 m2</option><option value="7500">7,500 m2</option><option value="10000">10,000 m2</option><option value="">10,000+ m2</option>            </select>
+            </div>
+
+            <div class="form-group">
+              <label for="input-floor-area-max">Max Floor Area (m<sup>2</sup>)</label>
+              <select name="floor_area_max" id="input-floor-area-max" class="form-control">
+                <option value="">Please Select</option>
+                <option value="0">N/A</option><option value="50">50 m2</option><option value="100">100 m2</option><option value="250">250 m2</option><option value="500">500 m2</option><option value="750">750 m2</option><option value="1000">1,000 m2</option><option value="1500">1,500 m2</option><option value="2000">2,000 m2</option><option value="2500">2,500 m2</option><option value="3000">3,000 m2</option><option value="3500">3,500 m2</option><option value="4000">4,000 m2</option><option value="4500">4,500 m2</option><option value="5000">5,000 m2</option><option value="7500">7,500 m2</option><option value="10000">10,000 m2</option><option value="">10,000+ m2</option>            </select>
+            </div>
+
+            <div class="form-group">
+              <label for="input-land-area-min">Min Land Area</label>
+              <select name="land_area_min" id="input-land-area-min" class="form-control">
+                <option value="">Please Select</option>
+                <option value="0">N/A</option><option value="1010">0.25 Acre</option><option value="2020">0.50 Acre</option><option value="3040">0.75 Acre</option><option value="4050">1.00 Acre</option><option value="8090">2.00 Acre</option><option value="12100">3.00 Acre</option><option value="16200">4.00 Acre</option><option value="20200">5.00 Acre</option><option value="24300">6.00 Acre</option><option value="28300">7.00 Acre</option><option value="32400">8.00 Acre</option><option value="36400">9.00 Acre</option><option value="40500">10.00 Acre</option><option value="60702">15.00 Acre</option><option value="80900">20.00 Acre</option><option value="101171">25.00 Acre</option><option value="121000">30.00 Acre</option><option value="141640">35.00 Acre</option><option value="162000">40.00 Acre</option><option value="182109">45.00 Acre</option><option value="202000">50.00 Acre</option><option value="222577">55.00 Acre</option><option value="243000">60.00 Acre</option><option value="263046">65.00 Acre</option><option value="283000">70.00 Acre</option><option value="303514">75.00 Acre</option><option value="324000">80.00 Acre</option><option value="343983">85.00 Acre</option><option value="364000">90.00 Acre</option><option value="384451">95.00 Acre</option><option value="405000">100.00 Acre</option><option value="500000">50.00 Hectares</option><option value="600000">60.00 Hectares</option><option value="700000">70.00 Hectares</option><option value="800000">80.00 Hectares</option><option value="900000">90.00 Hectares</option><option value="1000000">100.00 Hectares</option><option value="1250000">125.00 Hectares</option><option value="1500000">150.00 Hectares</option><option value="1750000">175.00 Hectares</option><option value="2000000">200.00 Hectares</option><option value="3000000">300.00 Hectares</option><option value="4000000">400.00 Hectares</option><option value="5000000">500.00 Hectares</option><option value="">500.00 + Hectares</option>            </select>
+            </div>
+
+            <div class="form-group">
+              <label for="input-land-area-max">Max Land Area</label>
+              <select name="land_area_max" id="input-land-area-max" class="form-control">
+                <option value="">Please Select</option>
+                <option value="0">N/A</option><option value="1010">0.25 Acre</option><option value="2020">0.50 Acre</option><option value="3040">0.75 Acre</option><option value="4050">1.00 Acre</option><option value="8090">2.00 Acre</option><option value="12100">3.00 Acre</option><option value="16200">4.00 Acre</option><option value="20200">5.00 Acre</option><option value="24300">6.00 Acre</option><option value="28300">7.00 Acre</option><option value="32400">8.00 Acre</option><option value="36400">9.00 Acre</option><option value="40500">10.00 Acre</option><option value="60702">15.00 Acre</option><option value="80900">20.00 Acre</option><option value="101171">25.00 Acre</option><option value="121000">30.00 Acre</option><option value="141640">35.00 Acre</option><option value="162000">40.00 Acre</option><option value="182109">45.00 Acre</option><option value="202000">50.00 Acre</option><option value="222577">55.00 Acre</option><option value="243000">60.00 Acre</option><option value="263046">65.00 Acre</option><option value="283000">70.00 Acre</option><option value="303514">75.00 Acre</option><option value="324000">80.00 Acre</option><option value="343983">85.00 Acre</option><option value="364000">90.00 Acre</option><option value="384451">95.00 Acre</option><option value="405000">100.00 Acre</option><option value="500000">50.00 Hectares</option><option value="600000">60.00 Hectares</option><option value="700000">70.00 Hectares</option><option value="800000">80.00 Hectares</option><option value="900000">90.00 Hectares</option><option value="1000000">100.00 Hectares</option><option value="1250000">125.00 Hectares</option><option value="1500000">150.00 Hectares</option><option value="1750000">175.00 Hectares</option><option value="2000000">200.00 Hectares</option><option value="3000000">300.00 Hectares</option><option value="4000000">400.00 Hectares</option><option value="5000000">500.00 Hectares</option><option value="">500.00 + Hectares</option>            </select>
+            </div>
+          </div>
+          <!-- end: .extra -->
+
+          <p class="centered">
+            <a href="#" class="show-extra" title="show advanced search options"><i class="icon-angle-down"></i> advanced search</a>
+          </p>
+
+          <!-- <button type="submit" name="display" value="map" id="refine-display-map" class="btn btn-success hidden-xs hidden-sm">Map My Results</button> -->
+
+          <!-- <button type="submit" name="display" value="list" id="refine-display-list" class="btn btn-success">List My Results</button> -->
+          <b-button
+            class="primary"
+            type="submit">Search</b-button>
+
+          <br>
+
+        </form>
+      </div>
+    </div>
+    <!-- end: .block -->
+  </div>
+<!-- end: sidebar search property -->
+
+  <div class="col-sm-9 col-md-9">
+    <div class="block row">
+      <div class="header-tab">
+        <h1>Results  (32,407)
+                    <form id="settings" class="form-inline hidden-xs hidden-sm" method="post">
+                        <select name="limit" class="form-control">
+                            <option value="10" selected="selected">10 per page</option><option value="20">20 per page</option><option value="50">50 per page</option><option value="100">100 per page</option>                        </select>
+                        <select name="order" class="form-control">
+                            <option value="price_base DESC" selected="selected">Price: Highest</option><option value="price_base ASC">Price: Lowest</option><option value="created_at DESC">Date: Latest</option><option value="created_at ASC">Date: Oldest</option><option value="land_area DESC">Land Area: Largest</option><option value="land_area ASC">Land Area: Smallest</option>                        </select>
+                    </form>
+                    </h1>
+      </div>
+      <div class="content">
+
+        <ul id="results">
+          <li>
+            <div class="row">
+
+              <div class="col-sm-6 col-md-4">
+                <a href="https://www.twpn.com/property/5669032/waterfront-unique-property-of-cote-d-azur/" title="View Waterfront Unique property of Cote d'Azur property details" class="property-image">
+                <img src="https://s3-eu-west-1.amazonaws.com/twpn-live/agents/641/images/properties/xml2u/12879-1436165/cap-d-ail-france-06320.jpeg" alt="Property photo" class="img-responsive">
+            </a>
+              </div>
+
+              <div class="col-sm-6 col-md-8">
+                <a href="https://www.twpn.com/property/5669032/waterfront-unique-property-of-cote-d-azur/" class="property-user-image hidden-xs" title="Blue Square Real Estate ">
+                <img src="https://www.twpn.com/media/avatars/13DB4E9A-C862-1027-E1DE-58622355DE97.jpg" alt="User Image" height="50" class="img-responsive">
+            </a>
+                <h4>
+                <span>
+                    <abbr title="Currency conversion provided as a guideline."> 33,483,104 GBP</abbr>
+                </span>
+                <a href="https://www.twpn.com/property/5669032/waterfront-unique-property-of-cote-d-azur/" title="Waterfront Unique property of Cote d'Azur">
+                    Waterfront Unique property of Cote d'Azur                </a>
+            </h4>
+
+                <p>
+                  The 5-level, 588M2 villa was recently renovated top to bottom by a reputable, fully insured construction company, (works finished in 2015), using materials and finishes of the absolute highest quality, taste and [...] </p>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="row">
+                      <div class="col-xs-6 features">
+                        <span class="bathroom"></span> 7 Bedrooms </div>
+                      <div class="col-xs-6 features">
+                        <span class="bedroom"></span> 7 Bathrooms
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 clearfix">
+                    <a href="https://www.twpn.com/property/5669032/waterfront-unique-property-of-cote-d-azur/" title="More details" class="btn btn-success pull-right">
+                        <i class="icon-arrow-right"></i> Details
+                    </a>
+
+
+                    <a rel="nofollow" href="5669032" data-id="5669032" data-type="ADD" class="btn btn-success btn-save pull-right">
+                        <i class="icon-save"></i> <span>Save</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+
+              <div class="col-sm-6 col-md-4">
+                <a href="https://www.twpn.com/property/477112/belle-epoque-style-villa-saint-jean-cap-ferrat-france/" title="View Belle Epoque Style Villa Saint Jean Cap Ferrat France property details" class="property-image">
+                <img src="https://www.twpn.com/media/agents/243/images/51770B6E-31FF-84DE-04BA-CEF1EB052230.jpg" alt="Property photo" class="img-responsive">
+            </a>
+              </div>
+
+              <div class="col-sm-6 col-md-8">
+                <a href="https://www.twpn.com/property/477112/belle-epoque-style-villa-saint-jean-cap-ferrat-france/" class="property-user-image hidden-xs" title="Chesterton Humberts ">
+                <img src="https://www.twpn.com/media/avatars/8782BE7C-5F0D-053E-C1F6-3B5B799670F0.jpg" alt="User Image" height="50" class="img-responsive">
+            </a>
+                <h4>
+                <span>
+                    <abbr title="Currency conversion provided as a guideline."> 22,741,600 GBP</abbr>
+                </span>
+                <a href="https://www.twpn.com/property/477112/belle-epoque-style-villa-saint-jean-cap-ferrat-france/" title="Belle Epoque Style Villa Saint Jean Cap Ferrat France">
+                    Belle Epoque Style Villa Saint Jean Cap  [...]                </a>
+            </h4>
+
+                <p>
+                  This is a beautiful Belle Epoque villa in Cap Ferrat that has been completely restored to its original splendour. It offers incredible sea views and a generous living area of 700m².Located only a stone's throw from the [...] </p>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="row">
+                      <div class="col-xs-6 features">
+                        <span class="bathroom"></span> 7 Bedrooms </div>
+                      <div class="col-xs-6 features">
+                        <span class="bedroom"></span> 7 Bathrooms
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 clearfix">
+                    <a href="https://www.twpn.com/property/477112/belle-epoque-style-villa-saint-jean-cap-ferrat-france/" title="More details" class="btn btn-success pull-right">
+                        <i class="icon-arrow-right"></i> Details
+                    </a>
+
+
+                    <a rel="nofollow" href="477112" data-id="477112" data-type="ADD" class="btn btn-success btn-save pull-right">
+                        <i class="icon-save"></i> <span>Save</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+
+              <div class="col-sm-6 col-md-4">
+                <a href="https://www.twpn.com/property/6792344/exceptional-property-in-the-old-town-of-mougins/" title="View Exceptional Property in the old town of Mougins property details" class="property-image">
+                <img src="https://s3-eu-west-1.amazonaws.com/twpn-live/agents/641/images/properties/xml2u/12879-839116/mougins-france-06250.jpeg" alt="Property photo" class="img-responsive">
+            </a>
+              </div>
+
+              <div class="col-sm-6 col-md-8">
+                <a href="https://www.twpn.com/property/6792344/exceptional-property-in-the-old-town-of-mougins/" class="property-user-image hidden-xs" title="Blue Square Real Estate ">
+                <img src="https://www.twpn.com/media/avatars/13DB4E9A-C862-1027-E1DE-58622355DE97.jpg" alt="User Image" height="50" class="img-responsive">
+            </a>
+                <h4>
+                <span>
+                    <abbr title="Currency conversion provided as a guideline."> 16,093,348 GBP</abbr>
+                </span>
+                <a href="https://www.twpn.com/property/6792344/exceptional-property-in-the-old-town-of-mougins/" title="Exceptional Property in the old town of Mougins">
+                    Exceptional Property in the old town of  [...]                </a>
+            </h4>
+
+                <p>
+                  Sumptuous property in Mougins village offering breathtaking panoramic sea views.This property with a total living space of 1200 m2 on a magnificent plot of land of aproximately 6000 m2 with 27 x 12 meters swimming pool [...] </p>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="row">
+                      <div class="col-xs-6 features">
+                        <span class="bathroom"></span> Studio </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 clearfix">
+                    <a href="https://www.twpn.com/property/6792344/exceptional-property-in-the-old-town-of-mougins/" title="More details" class="btn btn-success pull-right">
+                        <i class="icon-arrow-right"></i> Details
+                    </a>
+
+
+                    <a rel="nofollow" href="6792344" data-id="6792344" data-type="ADD" class="btn btn-success btn-save pull-right">
+                        <i class="icon-save"></i> <span>Save</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+
+              <div class="col-sm-6 col-md-4">
+                <a href="https://www.twpn.com/property/2359906/one-of-the-most-beautiful-domaines-of-the-languedoc/" title="View One Of The Most Beautiful Domaines Of The Languedoc With 165 Ha, Ideal For Oenotourisme. property details" class="property-image">
+                <img src="https://www.twpn.com/media/agents/287/images/4E6A9FAA-D221-DDCF-FAA9-A741E2949BD5.jpg" alt="Property photo" class="img-responsive">
+            </a>
+              </div>
+
+              <div class="col-sm-6 col-md-8">
+                <a href="https://www.twpn.com/property/2359906/one-of-the-most-beautiful-domaines-of-the-languedoc/" class="property-user-image hidden-xs" title="Suncastle Ltd">
+                <img src="https://www.twpn.com/media/avatars/F01BBB3E-605C-1ADB-9F2A-E4E8CDE77739.jpg" alt="User Image" height="50" class="img-responsive">
+            </a>
+                <h4>
+                <span>
+                    <abbr title="Currency conversion provided as a guideline."> 13,411,123 GBP</abbr>
+                </span>
+                <a href="https://www.twpn.com/property/2359906/one-of-the-most-beautiful-domaines-of-the-languedoc/" title="One Of The Most Beautiful Domaines Of The Languedoc With 165 Ha, Ideal For Oenotourisme.">
+                    One Of The Most Beautiful Domaines Of The  [...]                </a>
+            </h4>
+
+                <p>
+                  At 30 minutes from Montpellier, close the highways but in the countryside, exceptional castle of the 19th century on 165 hectares, one of the most beautiful domaines of the Languedoc. This site lends itself very well to [...] </p>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="row">
+                      <div class="col-xs-6 features">
+                        <span class="bathroom"></span> Studio </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 clearfix">
+                    <a href="https://www.twpn.com/property/2359906/one-of-the-most-beautiful-domaines-of-the-languedoc/" title="More details" class="btn btn-success pull-right">
+                        <i class="icon-arrow-right"></i> Details
+                    </a>
+
+
+                    <a rel="nofollow" href="2359906" data-id="2359906" data-type="ADD" class="btn btn-success btn-save pull-right">
+                        <i class="icon-save"></i> <span>Save</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+
+              <div class="col-sm-6 col-md-4">
+                <a href="https://www.twpn.com/property/413829/panoramic-views-of-the-alps-and-the-sea/" title="View Panoramic views of the Alps and the sea. property details" class="property-image">
+                <img src="https://www.twpn.com/media/agents/243/images/28056BA5-71E1-6D45-E8C3-844029DF8525.jpg" alt="Property photo" class="img-responsive">
+            </a>
+              </div>
+
+              <div class="col-sm-6 col-md-8">
+                <a href="https://www.twpn.com/property/413829/panoramic-views-of-the-alps-and-the-sea/" class="property-user-image hidden-xs" title="Chesterton Humberts ">
+                <img src="https://www.twpn.com/media/avatars/8782BE7C-5F0D-053E-C1F6-3B5B799670F0.jpg" alt="User Image" height="50" class="img-responsive">
+            </a>
+                <h4>
+                <span>
+                    <abbr title="Currency conversion provided as a guideline."> 12,183,000 GBP</abbr>
+                </span>
+                <a href="https://www.twpn.com/property/413829/panoramic-views-of-the-alps-and-the-sea/" title="Panoramic views of the Alps and the sea.">
+                    Panoramic views of the Alps and the sea.                </a>
+            </h4>
+
+                <p>
+                  A perfect family domain in a dominant position with panoramic views of the Alps and the sea all at the heart of a magnificent landscaped park.The property has a main stone bastide with 7 main rooms including an entrance [...] </p>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="row">
+                      <div class="col-xs-6 features">
+                        <span class="bathroom"></span> 9 Bedrooms </div>
+                      <div class="col-xs-6 features">
+                        <span class="bedroom"></span> 6 Bathrooms
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 clearfix">
+                    <a href="https://www.twpn.com/property/413829/panoramic-views-of-the-alps-and-the-sea/" title="More details" class="btn btn-success pull-right">
+                        <i class="icon-arrow-right"></i> Details
+                    </a>
+
+
+                    <a rel="nofollow" href="413829" data-id="413829" data-type="ADD" class="btn btn-success btn-save pull-right">
+                        <i class="icon-save"></i> <span>Save</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+
+              <div class="col-sm-6 col-md-4">
+                <a href="https://www.twpn.com/property/5684880/villa-for-sale/" title="View Villa for Sale property details" class="property-image">
+                <img src="https://s3-eu-west-1.amazonaws.com/twpn-live/agents/437/images/properties/rmv_international/00437_RKPHR5/landudec-finistere-brittany-france-landudec-fr.jpeg" alt="Property photo" class="img-responsive">
+            </a>
+              </div>
+
+              <div class="col-sm-6 col-md-8">
+                <a href="https://www.twpn.com/property/5684880/villa-for-sale/" class="property-user-image hidden-xs" title="Gascoignes International">
+                <img src="https://www.twpn.com/media/avatars/9A482538-BF83-18E0-A397-E3DAB3F45900.jpg" alt="User Image" height="50" class="img-responsive">
+            </a>
+                <h4>
+                <span>
+                    <abbr title="Currency conversion provided as a guideline."> 12,000,000 GBP</abbr>
+                </span>
+                <a href="https://www.twpn.com/property/5684880/villa-for-sale/" title="Villa for Sale">
+                    Villa for Sale                </a>
+            </h4>
+
+                <p>
+                  Dating from the 18th century, is without a doubt one of the most impressive and exceptional chateaus in Brittany. Surrounded by its extensive properties as well as its superb park, this chateau takes your breath [...] </p>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="row">
+                      <div class="col-xs-6 features">
+                        <span class="bathroom"></span> Studio </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 clearfix">
+                    <a href="https://www.twpn.com/property/5684880/villa-for-sale/" title="More details" class="btn btn-success pull-right">
+                        <i class="icon-arrow-right"></i> Details
+                    </a>
+
+
+                    <a rel="nofollow" href="5684880" data-id="5684880" data-type="ADD" class="btn btn-success btn-save pull-right">
+                        <i class="icon-save"></i> <span>Save</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+
+              <div class="col-sm-6 col-md-4">
+                <a href="https://www.twpn.com/property/5668083/superb-contemporary-villa-with-magnificent-sea-views/" title="View Superb contemporary villa with magnificent sea views - CANNES property details" class="property-image">
+                <img src="https://s3-eu-west-1.amazonaws.com/twpn-live/agents/641/images/properties/xml2u/12879-729768/cannes-france-06400.jpeg" alt="Property photo" class="img-responsive">
+            </a>
+              </div>
+
+              <div class="col-sm-6 col-md-8">
+                <a href="https://www.twpn.com/property/5668083/superb-contemporary-villa-with-magnificent-sea-views/" class="property-user-image hidden-xs" title="Blue Square Real Estate ">
+                <img src="https://www.twpn.com/media/avatars/13DB4E9A-C862-1027-E1DE-58622355DE97.jpg" alt="User Image" height="50" class="img-responsive">
+            </a>
+                <h4>
+                <span>
+                    <abbr title="Currency conversion provided as a guideline."> 10,728,898 GBP</abbr>
+                </span>
+                <a href="https://www.twpn.com/property/5668083/superb-contemporary-villa-with-magnificent-sea-views/" title="Superb contemporary villa with magnificent sea views - CANNES">
+                    Superb contemporary villa with magnificent  [...]                </a>
+            </h4>
+
+                <p>
+                  This magnificent contemporary property has a 'one of a kind' or 'wow factor ' renowned for 'the best views in Cannes ' boasting 660 m2 of modern living space with 6 bedrooms ensuite and a separate gardien's apartment [...] </p>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="row">
+                      <div class="col-xs-6 features">
+                        <span class="bathroom"></span> 8 Bedrooms </div>
+                      <div class="col-xs-6 features">
+                        <span class="bedroom"></span> 7 Bathrooms
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 clearfix">
+                    <a href="https://www.twpn.com/property/5668083/superb-contemporary-villa-with-magnificent-sea-views/" title="More details" class="btn btn-success pull-right">
+                        <i class="icon-arrow-right"></i> Details
+                    </a>
+
+
+                    <a rel="nofollow" href="5668083" data-id="5668083" data-type="ADD" class="btn btn-success btn-save pull-right">
+                        <i class="icon-save"></i> <span>Save</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+
+              <div class="col-sm-6 col-md-4">
+                <a href="https://www.twpn.com/property/1633909/sale-property-valbonne/" title="View Sale Property - Valbonne property details" class="property-image">
+                <img src="https://www.twpn.com/media/agents/45/images/09558FE9-9C21-6A64-0964-8EF02A23ACB2.jpg" alt="Property photo" class="img-responsive">
+            </a>
+              </div>
+
+              <div class="col-sm-6 col-md-8">
+                <a href="https://www.twpn.com/property/1633909/sale-property-valbonne/" class="property-user-image hidden-xs" title="French Prime Properties">
+                <img src="https://www.twpn.com/media/avatars/C9F12E20-0B6A-56BB-801D-4E037FC45F32.jpg" alt="User Image" height="50" class="img-responsive">
+            </a>
+                <h4>
+                <span>
+                    <abbr title="Currency conversion provided as a guideline."> 10,728,898 GBP</abbr>
+                </span>
+                <a href="https://www.twpn.com/property/1633909/sale-property-valbonne/" title="Sale Property - Valbonne">
+                    Sale Property - Valbonne                </a>
+            </h4>
+
+                <p>
+                  Ref. 751M - valbonne A rare period country house fully renovated dating from the 14th Century. This is your chance to own a piece of history close to the sea. This exceptional 10 room property, offers you all the modern [...] </p>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="row">
+                      <div class="col-xs-6 features">
+                        <span class="bathroom"></span> Studio </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 clearfix">
+                    <a href="https://www.twpn.com/property/1633909/sale-property-valbonne/" title="More details" class="btn btn-success pull-right">
+                        <i class="icon-arrow-right"></i> Details
+                    </a>
+
+
+                    <a rel="nofollow" href="1633909" data-id="1633909" data-type="ADD" class="btn btn-success btn-save pull-right">
+                        <i class="icon-save"></i> <span>Save</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+
+              <div class="col-sm-6 col-md-4">
+                <a href="https://www.twpn.com/property/8018014/beautiful-wine-domaine-with-165-hectares/" title="View Beautiful Wine Domaine with 165 Hectares property details" class="property-image">
+                <img src="https://s3-eu-west-1.amazonaws.com/twpn-live/agents/32/images/properties/xml2u/11500-SLR01419180712/autignac-france-34480.jpeg" alt="Property photo" class="img-responsive">
+            </a>
+              </div>
+
+              <div class="col-sm-6 col-md-8">
+                <a href="https://www.twpn.com/property/8018014/beautiful-wine-domaine-with-165-hectares/" class="property-user-image hidden-xs" title="Cle France">
+                <img src="https://www.twpn.com/media/avatars/0B80AAB7-CCEC-D4E4-6884-3A54B828C510.jpg" alt="User Image" height="50" class="img-responsive">
+            </a>
+                <h4>
+                <span>
+                    <abbr title="Currency conversion provided as a guideline."> 10,728,898 GBP</abbr>
+                </span>
+                <a href="https://www.twpn.com/property/8018014/beautiful-wine-domaine-with-165-hectares/" title="Beautiful Wine Domaine with 165 Hectares">
+                    Beautiful Wine Domaine with 165 Hectares                </a>
+            </h4>
+
+                <p>
+                  REDUCED in price - Exceptional Chateau and Wine Production Buisiness dating from the 19th Century on 165 hectares of land, one of the most beautiful domaines of the Languedoc. This site lends itself very well to the [...] </p>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="row">
+                      <div class="col-xs-6 features">
+                        <span class="bathroom"></span> Studio </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 clearfix">
+                    <a href="https://www.twpn.com/property/8018014/beautiful-wine-domaine-with-165-hectares/" title="More details" class="btn btn-success pull-right">
+                        <i class="icon-arrow-right"></i> Details
+                    </a>
+
+
+                    <a rel="nofollow" href="8018014" data-id="8018014" data-type="ADD" class="btn btn-success btn-save pull-right">
+                        <i class="icon-save"></i> <span>Save</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+
+              <div class="col-sm-6 col-md-4">
+                <a href="https://www.twpn.com/property/8036924/beautiful-wine-domaine-with-165-hectares/" title="View Beautiful Wine Domaine with 165 Hectares property details" class="property-image">
+                <img src="https://s3-eu-west-1.amazonaws.com/twpn-live/agents/32/images/properties/xml2u/11500-SLR01419180713/autignac-france-34480.jpeg" alt="Property photo" class="img-responsive">
+            </a>
+              </div>
+
+              <div class="col-sm-6 col-md-8">
+                <a href="https://www.twpn.com/property/8036924/beautiful-wine-domaine-with-165-hectares/" class="property-user-image hidden-xs" title="Cle France">
+                <img src="https://www.twpn.com/media/avatars/0B80AAB7-CCEC-D4E4-6884-3A54B828C510.jpg" alt="User Image" height="50" class="img-responsive">
+            </a>
+                <h4>
+                <span>
+                    <abbr title="Currency conversion provided as a guideline."> 10,728,898 GBP</abbr>
+                </span>
+                <a href="https://www.twpn.com/property/8036924/beautiful-wine-domaine-with-165-hectares/" title="Beautiful Wine Domaine with 165 Hectares">
+                    Beautiful Wine Domaine with 165 Hectares                </a>
+            </h4>
+
+                <p>
+                  REDUCED in price - Exceptional Chateau and Wine Production Buisiness dating from the 19th Century on 165 hectares of land, one of the most beautiful domaines of the Languedoc. This site lends itself very well to the [...] </p>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="row">
+                      <div class="col-xs-6 features">
+                        <span class="bathroom"></span> Studio </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 clearfix">
+                    <a href="https://www.twpn.com/property/8036924/beautiful-wine-domaine-with-165-hectares/" title="More details" class="btn btn-success pull-right">
+                        <i class="icon-arrow-right"></i> Details
+                    </a>
+
+
+                    <a rel="nofollow" href="8036924" data-id="8036924" data-type="ADD" class="btn btn-success btn-save pull-right">
+                        <i class="icon-save"></i> <span>Save</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <li class="active">
+              <a href="https://www.twpn.com/results/?q=%2Fresults%2F&amp;country=france&amp;page=1" title="Page 1 of 3241">
+                        1                    </a>
+            </li>
+            <li>
+              <a href="https://www.twpn.com/results/?q=%2Fresults%2F&amp;country=france&amp;page=2" title="Page 2 of 3241">
+                        2                    </a>
+            </li>
+            <li>
+              <a href="https://www.twpn.com/results/?q=%2Fresults%2F&amp;country=france&amp;page=3" title="Page 3 of 3241">
+                        3                    </a>
+            </li>
+            <li>
+              <a href="https://www.twpn.com/results/?q=%2Fresults%2F&amp;country=france&amp;page=4" title="Page 4 of 3241">
+                        4                    </a>
+            </li>
+            <li>
+              <a href="https://www.twpn.com/results/?q=%2Fresults%2F&amp;country=france&amp;page=5" title="Page 5 of 3241">
+                        5                    </a>
+            </li>
+            <li>
+              <a href="https://www.twpn.com/results/?q=%2Fresults%2F&amp;country=france&amp;page=6" title="Page 6 of 3241">
+                        6                    </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+
+<script>
+  import axios from 'axios'
+
+  export default {
+      data () {
+          return {
+              form: {
+                  data1: false
+              }
+          }
+      },
+      methods: {
+          onSubmitSearch () {
+            console.log('submitted search')
+            axios.post('https://www.twpn.com/resources/actions/search.php', this.form).then((data) => {
+                console.log(data.val())
+            })
+            .catch (e => {
+                console.log(e)
+            })
+          }
+      }
+  }
+
+</script>
